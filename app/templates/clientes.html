@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Clientes | ParNet Ingeniería{% endblock %}
+
 {% block styles %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/clientes.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/clientes.css') }}">
 {% endblock %}
+
 {% block content %}
 <div class="page-wrapper">
 
     <!-- HEADER COMPLETO -->
     <header id="main-header">
-        <img src="{{ url_for(\'static\', filename=\'img/header1.png\') }}" class="header-img" alt="Header 1">
+        <img src="{{ url_for('static', filename='img/header1.png') }}" class="header-img" alt="Header 1">
 
-        <!-- HEADER 2 con texto animado -->
         <div class="header2-wrapper">
-            <img src="{{ url_for(\'static\', filename=\'img/header2.png\') }}" class="header-img" alt="Header 2">
+            <img src="{{ url_for('static', filename='img/header2.png') }}" class="header-img" alt="Header 2">
 
-            <!-- TEXTO ANIMADO -->
             <div class="header-ticker">
                 <div class="ticker-text">
                     Bienvenido a
@@ -27,170 +27,165 @@
         </div>
     </header>
 
-    <!-- MENÚ CON HOTSPOTS INVISIBLES -->
+    <!-- MENÚ -->
     <div class="menu-wrapper">
-        <img src="{{ url_for(\'static\', filename=\'img/menu_tabs.png\') }}" class="menu-tabs" alt="Menú">
+        <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
 
-        <!-- Hotspots encima de cada pestaña -->
         <nav class="menu-hotspots">
-
-            <!-- 1. Página principal -->
-            <a href="{{ url_for('public.index') }}" class="tab tab-home" aria-label="Página principal"></a>
-
-            <!-- 2. ¿Quiénes somos? -->
-            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes" aria-label="¿Quiénes somos?"></a>
-
-            <!-- 3. Clientes -->
-            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes" aria-label="Clientes"></a>
-
-            <!-- 4. Servicios -->
-            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios" aria-label="Servicios"></a>
-
-            <!-- 5. Productos -->
-            <a href="{{ url_for('public.productos') }}" class="tab tab-productos" aria-label="Productos"></a>
-
-            <!-- 6. Casos de éxito -->
-            <a href="{{ url_for('public.casos') }}" class="tab tab-casos" aria-label="Casos de éxito"></a>
-
-            <!-- 7. Contacto -->
-            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto" aria-label="Contacto"></a>
-
-            <!-- 8. Socios -->
-            <a href="{{ url_for('public.socios') }}" class="tab tab-socios" aria-label="Socios"></a>
-
+            <a href="{{ url_for('public.index') }}" class="tab tab-home"></a>
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes"></a>
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes"></a>
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios"></a>
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos"></a>
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos"></a>
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto"></a>
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios"></a>
         </nav>
     </div>
-<!-- ================================ -->
-<!--        SECCIÓN CLIENTES          -->
-<!-- ================================ -->
 
-<div class="clientes-wrapper">
+    <!-- SECCIÓN CLIENTES -->
+    <div class="clientes-wrapper">
 
-    <h1 class="clientes-title">Nuestros Clientes</h1>
+        <h1 class="clientes-title">Nuestros Clientes</h1>
 
-    <p class="clientes-intro">
-        En <strong>Parnet Ingeniería</strong> colaboramos con empresas líderes en telecomunicaciones, voz, datos y fibra óptica,
-        brindando soluciones confiables de infraestructura y servicios especializados.
-    </p>
+        <p class="clientes-intro">
+            En <strong>Parnet Ingeniería</strong> colaboramos con empresas líderes en telecomunicaciones,
+            voz, datos y fibra óptica, brindando soluciones confiables de infraestructura y servicios especializados.
+        </p>
 
-    <div class="clientes-grid">
+        <div class="clientes-grid">
 
-        <!-- AT&T -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/at&t.png\') }}" alt="AT&T" class="cliente-logo">
+            <!-- AT&T -->
+            <div class="cliente-card">
+                <a href="https://www.att.com.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/at&t.png') }}" alt="AT&T" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">AT&T</h2>
+                <p class="cliente-testimonio">
+                    “Parnet Ingeniería ha fortalecido nuestros enlaces de datos mediante soluciones de fibra óptica.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">AT&T</h2>
-            <p class="cliente-testimonio">
-                “Parnet Ingeniería ha fortalecido nuestros enlaces de datos mediante soluciones de fibra óptica de alta disponibilidad.”
-            </p>
-        </div>
 
-        <!-- Axtel -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/axtel.png\') }}" alt="Axtel" class="cliente-logo">
+            <!-- Axtel -->
+            <div class="cliente-card">
+                <a href="https://www.axtel.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/axtel.png') }}" alt="Axtel" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Axtel</h2>
+                <p class="cliente-testimonio">
+                    “La implementación de redes LAN/WAN optimizó la comunicación corporativa.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Axtel</h2>
-            <p class="cliente-testimonio">
-                “La implementación de redes LAN/WAN optimizó la comunicación entre nuestras instalaciones corporativas.”
-            </p>
-        </div>
 
-        <!-- izzi -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/izzi.png\') }}" alt="izzi" class="cliente-logo">
+            <!-- izzi -->
+            <div class="cliente-card">
+                <a href="https://www.izzi.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/izzi.png') }}" alt="izzi" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">izzi Telecom</h2>
+                <p class="cliente-testimonio">
+                    “Integración de redes y mantenimiento de nodos críticos.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">izzi Telecom</h2>
-            <p class="cliente-testimonio">
-                “Gracias al cableado estructurado y la integración de voz y datos, mejoramos la operación de nuestros nodos.”
-            </p>
-        </div>
 
-        <!-- Megacable -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/megacable.png\') }}" alt="Megacable" class="cliente-logo">
+            <!-- Megacable -->
+            <div class="cliente-card">
+                <a href="https://www.megacable.com.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/megacable.png') }}" alt="Megacable" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Megacable</h2>
+                <p class="cliente-testimonio">
+                    “Reducción de interrupciones en servicios de fibra óptica.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Megacable</h2>
-            <p class="cliente-testimonio">
-                “El mantenimiento de redes y fibra óptica redujo interrupciones y aumentó la estabilidad de nuestros servicios.”
-            </p>
-        </div>
 
-        <!-- Movistar -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/movistar.png\') }}" alt="Movistar" class="cliente-logo">
+            <!-- Movistar -->
+            <div class="cliente-card">
+                <a href="https://www.movistar.com.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/movistar.png') }}" alt="Movistar" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Movistar</h2>
+                <p class="cliente-testimonio">
+                    “Modernización de infraestructura y ampliación de cobertura.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Movistar</h2>
-            <p class="cliente-testimonio">
-                “La modernización de infraestructura de telecomunicaciones permitió ampliar nuestra cobertura con mayor calidad.”
-            </p>
-        </div>
 
-        <!-- Oxxo -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/oxxo.png\') }}" alt="Oxxo" class="cliente-logo">
+            <!-- Oxxo -->
+            <div class="cliente-card">
+                <a href="https://www.oxxo.com" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/oxxo.png') }}" alt="Oxxo" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">OXXO</h2>
+                <p class="cliente-testimonio">
+                    “Instalamos redes confiables en múltiples sucursales.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">OXXO</h2>
-            <p class="cliente-testimonio">
-                “Instalamos redes de datos confiables en múltiples sucursales para mejorar la operación y servicios en tienda.”
-            </p>
-        </div>
 
-        <!-- Telmex -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/telmex.png\') }}" alt="Telmex" class="cliente-logo">
+            <!-- Telmex -->
+            <div class="cliente-card">
+                <a href="https://www.telmex.com" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/telmex.png') }}" alt="Telmex" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Telmex</h2>
+                <p class="cliente-testimonio">
+                    “Ampliación de enlaces ópticos y cableado estructurado.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Telmex</h2>
-            <p class="cliente-testimonio">
-                “Parnet Ingeniería apoyó en la ampliación de enlaces ópticos y la mejora del cableado estructurado corporativo.”
-            </p>
-        </div>
 
-        <!-- Totalplay -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/totalplay.png\') }}" alt="Totalplay" class="cliente-logo">
+            <!-- Totalplay -->
+            <div class="cliente-card">
+                <a href="https://www.totalplay.com.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/totalplay.png') }}" alt="Totalplay" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Totalplay Empresarial</h2>
+                <p class="cliente-testimonio">
+                    “Integración profesional de voz y datos.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Totalplay Empresarial</h2>
-            <p class="cliente-testimonio">
-                “Integración profesional de voz y datos que mejoró la conectividad entre centros de operación.”
-            </p>
-        </div>
 
-        <!-- Walmart -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/Walmart.png\') }}" alt="Walmart" class="cliente-logo">
+            <!-- Walmart -->
+            <div class="cliente-card">
+                <a href="https://www.walmart.com.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/Walmart.png') }}" alt="Walmart" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Walmart México</h2>
+                <p class="cliente-testimonio">
+                    “Mantenimiento eléctrico y redes internas.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Walmart México</h2>
-            <p class="cliente-testimonio">
-                “Instalación de redes internas y mantenimiento eléctrico para garantizar operaciones continuas.”
-            </p>
-        </div>
 
-        <!-- Gobierno -->
-        <div class="cliente-card">
-            <div class="cliente-logo-box">
-                <img src="{{ url_for(\'static\', filename=\'img/gob.png\') }}" alt="Gobierno" class="cliente-logo">
+            <!-- Gobierno -->
+            <div class="cliente-card">
+                <a href="https://www.gob.mx" target="_blank" class="cliente-link">
+                    <div class="cliente-logo-box">
+                        <img src="{{ url_for('static', filename='img/gob.png') }}" alt="Gobierno" class="cliente-logo">
+                    </div>
+                </a>
+                <h2 class="cliente-nombre">Gobierno del Estado</h2>
+                <p class="cliente-testimonio">
+                    “Infraestructura de voz y datos para servicios públicos.”
+                </p>
             </div>
-            <h2 class="cliente-nombre">Gobierno del Estado</h2>
-            <p class="cliente-testimonio">
-                “Implementamos infraestructura de voz y datos para oficinas administrativas y servicios públicos.”
-            </p>
-        </div>
-
-    </div>
-
-</div>
 
         </div>
-
     </div>
 
 </div>

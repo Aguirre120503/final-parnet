@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}Inicio | ParNet Ingeniería{% endblock %}
-
 {% block styles %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
@@ -16,7 +15,6 @@
         <div class="header2-wrapper">
             <img src="{{ url_for('static', filename='img/header2.png') }}" class="header-img" alt="Header 2">
 
-            <!-- TEXTO ANIMADO -->
             <div class="header-ticker">
                 <div class="ticker-text">
                     Bienvenido a
@@ -32,32 +30,16 @@
     <div class="menu-wrapper">
         <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
 
-        <!-- Hotspots encima de cada pestaña -->
         <nav class="menu-hotspots">
 
-            <!-- 1. Página principal -->
-            <a href="{{ url_for('public.index') }}" class="tab tab-home" aria-label="Página principal"></a>
-
-            <!-- 2. ¿Quiénes somos? -->
-            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes" aria-label="¿Quiénes somos?"></a>
-
-            <!-- 3. Clientes -->
-            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes" aria-label="Clientes"></a>
-
-            <!-- 4. Servicios -->
-            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios" aria-label="Servicios"></a>
-
-            <!-- 5. Productos -->
-            <a href="{{ url_for('public.productos') }}" class="tab tab-productos" aria-label="Productos"></a>
-
-            <!-- 6. Casos de éxito -->
-            <a href="{{ url_for('public.casos') }}" class="tab tab-casos" aria-label="Casos de éxito"></a>
-
-            <!-- 7. Contacto -->
-            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto" aria-label="Contacto"></a>
-
-            <!-- 8. Socios -->
-            <a href="{{ url_for('public.socios') }}" class="tab tab-socios" aria-label="Socios"></a>
+            <a href="{{ url_for('public.index') }}" class="tab tab-home"></a>
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes"></a>
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes"></a>
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios"></a>
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos"></a>
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos"></a>
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto"></a>
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios"></a>
 
         </nav>
     </div>

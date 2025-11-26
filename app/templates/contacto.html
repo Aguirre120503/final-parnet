@@ -1,14 +1,182 @@
+{% extends "base.html" %}
+{% block title %}Contacto | ParNet Ingeniería{% endblock %}
 
-{% extends 'base.html' %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b65c2;
+    min-height: 100vh;
+  }
+
+  /* 🟦 CUADRO PRINCIPAL AHORA AZUL FUERTE */
+  .contact-card {
+    background: #003d80;                     /* azul fuerte */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    padding: 25px 30px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 25px;
+  }
+
+  /* 🟡 TÍTULO AMARILLO */
+  .contact-title {
+    font-size: 1.8rem;
+    color: #facc15;    /* amarillo */
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  /* texto debajo del título */
+  .contact-subtitle {
+    color: white;
+    margin-bottom: 18px;
+  }
+
+  /* FORMULARIO */
+
+  .contact-form label {
+    font-weight: bold;
+    color: #facc15;           /* amarillo */
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  /* BOTÓN */
+  .btn-primary {
+    background: #facc15;      /* amarillo */
+    color: #003d80;           /* azul fuerte */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+
+  .btn-primary:hover {
+    background: #ffe55c;
+  }
+
+  /* INFORMACIÓN DE LA EMPRESA */
+  .contact-info h2 {
+    color: #facc15;                 /* amarillo */
+    font-weight: bold;
+    margin-top: 0;
+  }
+
+  .contact-info p {
+    color: white !important;        /* blanco por defecto */
+    margin: 6px 0;
+  }
+
+  /* Poner en amarillo negritas */
+  .contact-info strong {
+    color: #facc15 !important;       
+    font-weight: bold;
+  }
+
+  @media (max-width: 900px) {
+    .contact-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %}
+
 {% block content %}
-<h1>Contacto</h1>
-<form method="post">
-  <label>Nombre</label>
-  <input type="text" name="nombre">
-  <label>Email</label>
-  <input type="email" name="email">
-  <label>Mensaje</label>
-  <textarea name="mensaje"></textarea>
-  <button type="submit">Enviar</button>
-</form>
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header id="main-header">
+    <img src="{{ url_for('static', filename='img/header1.png') }}" class="header-img" alt="Header 1">
+
+    <div class="header2-wrapper">
+      <img src="{{ url_for('static', filename='img/header2.png') }}" class="header-img" alt="Header 2">
+
+      <div class="header-ticker">
+        <div class="ticker-text">
+          Bienvenido a
+          <span class="highlight-yellow">PARNET Ingeniería S.A. de C.V.</span>
+          Continuamente actualizamos el Sitio. Revisa nuestros estándares de calidad
+          <span class="highlight-yellow">ISO 9000</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENÚ -->
+  <div class="menu-wrapper">
+    <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
+    <nav class="menu-hotspots">
+      <a href="{{ url_for('public.index') }}" class="tab tab-home"></a>
+      <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes"></a>
+      <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes"></a>
+      <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios"></a>
+      <a href="{{ url_for('public.productos') }}" class="tab tab-productos"></a>
+      <a href="{{ url_for('public.casos') }}" class="tab tab-casos"></a>
+      <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto"></a>
+      <a href="{{ url_for('public.socios') }}" class="tab tab-socios"></a>
+    </nav>
+  </div>
+
+  <!-- CONTENIDO CONTACTO -->
+  <div class="contact-wrapper">
+    <div class="contact-card">
+
+      <!-- FORMULARIO -->
+      <div class="contact-form">
+        <h1 class="contact-title">Contáctanos</h1>
+        <p class="contact-subtitle">Envíanos un mensaje y con gusto nos pondremos en contacto contigo.</p>
+
+        <form method="post" action="{{ url_for('public.contacto') }}">
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required>
+          </div>
+
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono (opcional)</label>
+            <input type="text" name="telefono">
+          </div>
+
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea name="mensaje" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Enviar mensaje</button>
+        </form>
+      </div>
+
+      <!-- INFO DE LA EMPRESA -->
+      <div class="contact-info">
+        <h2>ParNet Ingeniería S.A. de C.V.</h2>
+        <p><strong>Telecomunicaciones, Voz, Datos, Fibra Óptica.</strong></p>
+        <p><strong>Dirección:</strong> (Avenida Tecnologica #2450, Parque Industrial</p>
+        <p><strong>Teléfono:</strong> (844) 204 96 41</p>
+        <p><strong>Correo:</strong> contacto@parnet.com</p>
+        <p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 a 18:00 hrs.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 {% endblock %}

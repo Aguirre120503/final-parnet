@@ -1,30 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Socios | ParNet Ingeniería{% endblock %}
+
 {% block styles %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Final Web</title>
-    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'css/styles.css\') }}">
-</head>
-<body>
 
 <div class="page-wrapper">
 
     <!-- HEADER COMPLETO -->
     <header id="main-header">
-        <img src="{{ url_for(\'static\', filename=\'img/header1.png\') }}" class="header-img" alt="Header 1">
+        <img src="{{ url_for('static', filename='img/header1.png') }}" class="header-img" alt="Header 1">
 
-        <!-- HEADER 2 con texto animado -->
         <div class="header2-wrapper">
-            <img src="{{ url_for(\'static\', filename=\'img/header2.png\') }}" class="header-img" alt="Header 2">
+            <img src="{{ url_for('static', filename='img/header2.png') }}" class="header-img" alt="Header 2">
 
-            <!-- TEXTO ANIMADO -->
             <div class="header-ticker">
                 <div class="ticker-text">
                     Bienvenido a
@@ -36,37 +27,53 @@
         </div>
     </header>
 
-    <!-- MENÚ CON HOTSPOTS INVISIBLES -->
+    <!-- MENÚ -->
     <div class="menu-wrapper">
-        <img src="{{ url_for(\'static\', filename=\'img/menu_tabs.png\') }}" class="menu-tabs" alt="Menú">
+        <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
 
-        <!-- Hotspots encima de cada pestaña -->
         <nav class="menu-hotspots">
-
-            <!-- 1. Página principal -> AHORA index.html (login) -->
-            <a href="{{ url_for('public.index') }}" class="tab tab-home" aria-label="Página principal"></a>
-
-            <!-- 2. ¿Quiénes somos? -->
-            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes" aria-label="¿Quiénes somos?"></a>
-
-            <!-- 3. Clientes -->
-            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes" aria-label="Clientes"></a>
-
-            <!-- 4. Servicios -->
-            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios" aria-label="Servicios"></a>
-
-            <!-- 5. PRODUCTOS → ahora abre productos.html -->
-            <a href="{{ url_for('public.productos') }}" class="tab tab-productos" aria-label="Productos"></a>
-
-            <!-- 6. Casos de éxito -->
-            <a href="{{ url_for('public.casos') }}" class="tab tab-casos" aria-label="Casos de éxito"></a>
-
-            <!-- 7. Contactos -->
-            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto" aria-label="Contacto"></a>
-
-            <!-- 8. Socios -->
-            <a href="{{ url_for('public.socios') }}" class="tab tab-socios" aria-label="Socios"></a>
-
+            <a href="{{ url_for('public.index') }}" class="tab tab-home"></a>
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes"></a>
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes"></a>
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios"></a>
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos"></a>
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos"></a>
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto"></a>
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios"></a>
         </nav>
     </div>
+
+    <!-- CONTENIDO DE SOCIOS -->
+    <div class="content-wrapper" style="padding: 40px; color: white;">
+        <h1 style="color: #facc15; text-align: center;">Nuestros Socios</h1>
+
+        <p style="text-align: center; max-width: 700px; margin: auto;">
+            En <strong style="color: #facc15;">ParNet Ingeniería</strong> trabajamos con socios estratégicos del sector tecnológico,
+            telecomunicaciones y soluciones empresariales para brindar servicios de la más alta calidad.
+        </p>
+
+        <br>
+
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+
+            <div style="background:#003d80; padding:20px; border-radius:12px; width:260px;">
+                <h3 style="color:#facc15; text-align:center;">Cisco Systems</h3>
+                <p>Socio tecnológico en infraestructura de red, seguridad y telecomunicaciones.</p>
+            </div>
+
+            <div style="background:#003d80; padding:20px; border-radius:12px; width:260px;">
+                <h3 style="color:#facc15; text-align:center;">Huawei Enterprise</h3>
+                <p>Colaboración en soluciones de fibra óptica, data centers y conectividad.</p>
+            </div>
+
+            <div style="background:#003d80; padding:20px; border-radius:12px; width:260px;">
+                <h3 style="color:#facc15; text-align:center;">Furukawa Electric</h3>
+                <p>Proveedores de cableado estructurado y fibra óptica certificada.</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}

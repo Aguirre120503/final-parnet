@@ -65,3 +65,14 @@
     text-align: justify;
     line-height: 1.4;
 }
+
+/* EFECTO DE ILUMINACIÓN EN LOGOS */
+.cliente-logo-box {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.cliente-link:hover .cliente-logo-box {
+    filter: brightness(1.4);   /* ilumina */
+    transform: scale(1.05);    /* hace un mini zoom */
+    cursor: pointer;
+}

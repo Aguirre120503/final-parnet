@@ -98,5 +98,4 @@ def socios():
 
 @public_bp.route("/casos")
 def casos():
-    # de momento solo devuelve una plantilla básica; tú puedes diseñarla luego
-    return render_template("socios.html")
+    return render_template("casos.html")

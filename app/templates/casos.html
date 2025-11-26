@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Casos de Éxito | ParNet Ingeniería{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(#004b80, #4aa7e5);
+    min-height: 100vh;
+  }
+
+  .casos-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    color: #facc15;
+  }
+
+  .casos-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #facc15;
+  }
+
+  .casos-desc {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #facc15;
+  }
+
+  .caso-card {
+    background: #1e3a8a;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  }
+
+  .caso-card h2 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    color: #facc15;
+  }
+
+  .caso-card p {
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <img src="{{ url_for('static', filename='img/header1.png') }}" class="header-img" alt="Header 1">
+
+        <div class="header2-wrapper">
+            <img src="{{ url_for('static', filename='img/header2.png') }}" class="header-img" alt="Header 2">
+
+            <div class="header-ticker">
+                <div class="ticker-text">
+                    Bienvenido a
+                    <span class="highlight-yellow">PARNET Ingeniería S.A. de C.V.</span>
+                    Continuamente actualizamos el Sitio. Revisa nuestros estándares de calidad
+                    <span class="highlight-yellow">ISO 9000</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENÚ -->
+    <div class="menu-wrapper">
+        <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
+
+        <nav class="menu-hotspots">
+            <a href="{{ url_for('public.index') }}" class="tab tab-home"></a>
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes"></a>
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes"></a>
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios"></a>
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos"></a>
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos"></a>
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto"></a>
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios"></a>
+        </nav>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="casos-wrapper">
+
+      <h1 class="casos-title">Casos de Éxito</h1>
+      <p class="casos-desc">Historias reales de clientes que confiaron en ParNet Ingeniería.</p>
+
+      <div class="caso-card">
+        <h2>Optimización de Red Industrial</h2>
+        <p><strong>Cliente:</strong> Grupo NovaTech</p>
+        <p><strong>Resultado:</strong> Reducción del 40% en fallos de red.</p>
+        <p><strong>Descripción:</strong> Se instaló infraestructura administrada, monitoreo 24/7 y soporte remoto.</p>
+      </div>
+
+      <div class="caso-card">
+        <h2>Implementación de Servidores Seguros</h2>
+        <p><strong>Cliente:</strong> Clínica Santa María</p>
+        <p><strong>Resultado:</strong> Protección total de historiales médicos.</p>
+        <p><strong>Descripción:</strong> Migración a servidores dedicados con redundancia y backups automáticos.</p>
+      </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

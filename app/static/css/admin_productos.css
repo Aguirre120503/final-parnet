@@ -1,0 +1,90 @@
+/* ====== PANEL ADMIN – PRODUCTOS ====== */
+
+.admin-productos {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #003366;
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+}
+
+.admin-productos h1 {
+    margin-top: 0;
+    text-align: center;
+    color: #ffdd00;
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+
+/* FORMULARIO */
+.form-admin {
+    background: #004a8f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+}
+
+.form-admin input,
+.form-admin select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #88aed0;
+    font-size: 14px;
+    width: 100%;
+}
+
+.form-admin button {
+    grid-column: span 2;
+    padding: 12px;
+    background: #ffdd00;
+    color: #003366;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.form-admin button:hover {
+    background: #ffe55c;
+}
+
+/* LISTA DE PRODUCTOS */
+.lista-productos-admin {
+    padding-left: 0;
+    list-style: none;
+    margin-top: 30px;
+}
+
+.lista-productos-admin li {
+    background: #f9fafc;
+    color: #1e293b;
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.lista-productos-admin li form button {
+    background: #dc2626;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lista-productos-admin li form button:hover {
+    background: #ff4b4b;
+}
