@@ -1,0 +1,228 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("../img/background.png") repeat-x center top;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  background-attachment: fixed;
+}
+
+/* CONTENEDOR GENERAL */
+.page-wrapper {
+  width: 1004px;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+
+#main-header {
+  position: relative;
+}
+
+.header-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* HEADER 2 */
+
+.header2-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* TEXTO DESLIZANTE */
+
+.header-ticker {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  padding-left: 10px;
+}
+
+.highlight-yellow {
+  color: #ffff00;
+  font-weight: bold;
+}
+
+.ticker-text {
+  display: inline-block;
+  animation: headerTicker 18s linear infinite;
+}
+
+@keyframes headerTicker {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ================= MENÚ ================= */
+
+.menu-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.menu-tabs {
+  width: 100%;
+  display: block;
+  margin-top: -3px;
+}
+
+/* Capa de hotspots encima del menú */
+.menu-hotspots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1004px;  /* mismo ancho que el diseño */
+  height: 35px;   /* altura aproximada del menú */
+}
+
+/* Botones transparentes (todas las pestañas) */
+.tab {
+  position: absolute;
+  top: 0;
+  height: 35px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  display: block;
+}
+
+/* 8 pestañas calculadas a lo largo de 1004px
+   Ajusta estos left/width si quieres que queden aún más finitos
+*/
+
+/* 1. Página principal */
+.tab-home {
+  left: 0;
+  width: 120px;
+}
+
+/* 2. ¿Quiénes somos? */
+.tab-quienes {
+  left: 120px;
+  width: 150px;
+}
+
+/* 3. Clientes */
+.tab-clientes {
+  left: 270px;
+  width: 110px;
+}
+
+/* 4. Servicios */
+.tab-servicios {
+  left: 380px;
+  width: 120px;
+}
+
+/* 5. Productos (ya la tenías cerca de 540px, la ajustamos) */
+.tab-productos {
+  left: 540px;
+  width: 110px;
+}
+
+/* 6. Casos de éxito */
+.tab-casos {
+  left: 650px;
+  width: 120px;
+}
+
+/* 7. Contactos */
+.tab-contacto {
+  left: 770px;
+  width: 110px;
+}
+
+/* 8. Socios */
+.tab-socios {
+  left: 880px;
+  width: 120px;
+}
+
+/* ================= LAYOUT PRINCIPAL ================= */
+
+.main-content {
+  width: 1004px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 0;
+}
+
+/* COLUMNA IZQUIERDA */
+
+.left-column {
+  width: 215px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.noticias-img,
+.menu-vertical-img {
+  width: 215px;
+  height: auto;
+  display: block;
+}
+
+/* COLUMNA DERECHA */
+
+.right-column {
+  width: 790px;
+  padding: 0;
+  margin: 0 0 0 -3px;  /* evitar línea blanca */
+}
+
+.content-img {
+  width: 790px;
+  height: auto;
+  display: block;
+}
+
+/* ================= SECCIÓN PRODUCTOS ================= */
+
+.productos-section {
+  margin-top: 25px;
+  padding: 15px 20px;
+  background-color: #2f5f95;
+  font-size: 12px;
+}
+
+.productos-section h2 {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+#buscador-productos {
+  width: 100%;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #000000;
+}
+
+#lista-productos {
+  list-style: none;
+  padding-left: 0;
+}
+
+#lista-productos li {
+  margin-bottom: 4px;
+}

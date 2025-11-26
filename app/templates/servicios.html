@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block title %}Servicios | ParNet Ingeniería{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css') }}">
+{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+
+    <!-- HEADER COMPLETO -->
+    <header id="main-header">
+        <img src="{{ url_for(\'static\', filename=\'img/header1.png\') }}" class="header-img" alt="Header 1">
+
+        <!-- HEADER 2 con texto animado -->
+        <div class="header2-wrapper">
+            <img src="{{ url_for(\'static\', filename=\'img/header2.png\') }}" class="header-img" alt="Header 2">
+
+            <!-- TEXTO ANIMADO -->
+            <div class="header-ticker">
+                <div class="ticker-text">
+                    Bienvenido a
+                    <span class="highlight-yellow">PARNET Ingeniería S.A. de C.V.</span>
+                    Continuamente actualizamos el Sitio. Revisa nuestros estándares de calidad
+                    <span class="highlight-yellow">ISO 9000</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENÚ CON HOTSPOTS INVISIBLES -->
+    <div class="menu-wrapper">
+        <img src="{{ url_for(\'static\', filename=\'img/menu_tabs.png\') }}" class="menu-tabs" alt="Menú">
+
+        <!-- Hotspots encima de cada pestaña -->
+        <nav class="menu-hotspots">
+
+            <!-- 1. Página principal -> AHORA index.html (login) -->
+            <a href="{{ url_for('public.index') }}" class="tab tab-home" aria-label="Página principal"></a>
+
+            <!-- 2. ¿Quiénes somos? -->
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes" aria-label="¿Quiénes somos?"></a>
+
+            <!-- 3. Clientes -->
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes" aria-label="Clientes"></a>
+
+            <!-- 4. Servicios -->
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios" aria-label="Servicios"></a>
+
+            <!-- 5. PRODUCTOS → ahora abre productos.html -->
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos" aria-label="Productos"></a>
+
+            <!-- 6. Casos de éxito -->
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos" aria-label="Casos de éxito"></a>
+
+            <!-- 7. Contactos -->
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto" aria-label="Contacto"></a>
+
+            <!-- 8. Socios -->
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios" aria-label="Socios"></a>
+
+        </nav>
+    </div>
+
+
+    <!-- ================================ -->
+    <!--            SERVICIOS             -->
+    <!-- ================================ -->
+
+    <div class="servicios-wrapper">
+
+        <h1 class="servicios-title">Nuestros Servicios</h1>
+
+        <p class="servicios-intro">
+            En <strong>Parnet Ingeniería</strong> ofrecemos soluciones completas en telecomunicaciones, voz, datos, 
+            fibra óptica y sistemas eléctricos para garantizar la operación continua y eficiente de tu empresa.
+        </p>
+
+        <div class="servicios-grid">
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Redes de Voz y Datos</h2>
+                <p class="servicio-desc">
+                    Instalación profesional de redes de comunicación internas para empresas, oficinas y corporativos.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Cableado Estructurado</h2>
+                <p class="servicio-desc">
+                    Implementación de cableado categoría 5e, 6 y 6A con certificación y organización profesional.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Fibra Óptica</h2>
+                <p class="servicio-desc">
+                    Instalación, fusión, tendido y certificación de fibra óptica para enlaces de alta velocidad.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Centros de Datos</h2>
+                <p class="servicio-desc">
+                    Diseño, instalación y mantenimiento de racks, cuartos de telecomunicaciones y data centers.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Enlaces y Conectividad</h2>
+                <p class="servicio-desc">
+                    Soluciones para interconectar sucursales, corporativos y redes empresariales.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Sistemas Eléctricos</h2>
+                <p class="servicio-desc">
+                    Instalación de energía regulada, UPS, tableros eléctricos y protección contra sobrecargas.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Mantenimiento de Redes</h2>
+                <p class="servicio-desc">
+                    Mantenimiento preventivo y correctivo para garantizar la estabilidad de la red.
+                </p>
+            </div>
+
+            <div class="servicio-card">
+                <h2 class="servicio-nombre">Desarrollo de Software</h2>
+                <p class="servicio-desc">
+                    Creación de sistemas web, aplicaciones empresariales y soluciones a medida.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

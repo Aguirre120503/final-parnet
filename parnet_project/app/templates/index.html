@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>Bienvenido a ParNet Ingeniería</h1>
+<p>Aquí irá tu diseño con slider, imágenes, etc.</p>
+
+<h2>Noticias</h2>
+<ul>
+  {% for n in noticias %}
+  <li><strong>{{ n.titulo }}</strong> - {{ n.contenido }}</li>
+  {% else %}
+  <li>No hay noticias aún.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

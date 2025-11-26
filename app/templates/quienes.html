@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}¿Quiénes somos? | ParNet Ingeniería{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/quienes.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+
+    <!-- HEADER COMPLETO -->
+    <header id="main-header">
+        <img src="{{ url_for('static', filename='img/header1.png') }}" class="header-img" alt="Header 1">
+
+        <!-- HEADER 2 con texto animado -->
+        <div class="header2-wrapper">
+            <img src="{{ url_for('static', filename='img/header2.png') }}" class="header-img" alt="Header 2">
+
+            <!-- TEXTO ANIMADO -->
+            <div class="header-ticker">
+                <div class="ticker-text">
+                    Bienvenido a
+                    <span class="highlight-yellow">PARNET Ingeniería S.A. de C.V.</span>
+                    Continuamente actualizamos el Sitio. Revisa nuestros estándares de calidad
+                    <span class="highlight-yellow">ISO 9000</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENÚ CON HOTSPOTS INVISIBLES -->
+    <div class="menu-wrapper">
+        <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
+
+        <!-- Hotspots encima de cada pestaña -->
+        <nav class="menu-hotspots">
+
+            <!-- 1. Página principal -->
+            <a href="{{ url_for('public.index') }}" class="tab tab-home" aria-label="Página principal"></a>
+
+            <!-- 2. ¿Quiénes somos? -->
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes" aria-label="¿Quiénes somos?"></a>
+
+            <!-- 3. Clientes -->
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes" aria-label="Clientes"></a>
+
+            <!-- 4. Servicios -->
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios" aria-label="Servicios"></a>
+
+            <!-- 5. Productos -->
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos" aria-label="Productos"></a>
+
+            <!-- 6. Casos de éxito -->
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos" aria-label="Casos de éxito"></a>
+
+            <!-- 7. Contacto -->
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto" aria-label="Contacto"></a>
+
+            <!-- 8. Socios -->
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios" aria-label="Socios"></a>
+
+        </nav>
+    </div>
+
+    <!-- ================================ -->
+    <!--        SECCIÓN QUIÉNES SOMOS     -->
+    <!-- ================================ -->
+
+    <div class="quienes-box">
+
+        <h1 class="quienes-title">¿Quiénes Somos?</h1>
+
+        <p class="quienes-text">
+            En <strong>Parnet Ingeniería</strong> somos una empresa dedicada a ofrecer Soluciones Integrales en Telecomunicaciones 
+            (voz y datos) y sistemas eléctricos especializados, diseñados para resolver de forma eficiente las necesidades 
+            tecnológicas de las organizaciones modernas. Nuestro compromiso es brindar productos, aplicaciones y servicios 
+            de vanguardia que simplifiquen los procesos empresariales y optimicen el trabajo de cada usuario.
+        </p>
+
+        <p class="quienes-text">
+            Nos enfocamos en proporcionar comunicación efectiva y de alta confiabilidad, impulsando el crecimiento, la 
+            productividad y la competitividad de nuestros clientes. Creemos firmemente en la importancia estratégica del 
+            desarrollo tecnológico, por lo que integramos soluciones basadas en fibra óptica, sistemas avanzados de comunicación 
+            y software especializado.
+        </p>
+
+        <p class="quienes-text">
+            Además, entendemos que la energía eléctrica es un pilar fundamental para el funcionamiento adecuado de cualquier 
+            empresa. Por ello, contamos con soluciones que garantizan estabilidad energética y protección contra picos, 
+            sobrevoltajes, interrupciones y fallas comunes que pueden poner en riesgo su infraestructura informática.
+        </p>
+
+        <p class="quienes-text">
+            En <strong>Parnet Ingeniería</strong> trabajamos con la visión de ser un aliado tecnológico sólido, ofreciendo 
+            desarrollo de software a la medida, aplicaciones web, sistemas cliente-servidor, soluciones móviles, bases de datos 
+            y plataformas de control interno, siempre con altos estándares de calidad y confiabilidad.
+        </p>
+
+    </div>
+
+</div>
+{% endblock %}

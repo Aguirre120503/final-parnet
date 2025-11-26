@@ -1,0 +1,57 @@
+/* ============================================
+   SECCIÓN SERVICIOS
+   ============================================ */
+
+.servicios-wrapper {
+    width: 85%;
+    margin: 40px auto;
+    background-color: #003366;
+    padding: 25px 30px;
+    border-radius: 8px;
+    border: 1px solid #001f3f;
+}
+
+.servicios-title {
+    color: #ffff33;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.servicios-intro {
+    color: #ffffff;
+    font-size: 14px;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+/* Grid de servicios */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* Tarjeta de servicio */
+.servicio-card {
+    background-color: #0b2a4d;
+    border-radius: 8px;
+    border: 1px solid #001f3f;
+    padding: 20px;
+}
+
+/* Nombre del servicio */
+.servicio-nombre {
+    font-size: 16px;
+    color: #ffff33;
+    margin-bottom: 10px;
+}
+
+/* Descripción del servicio */
+.servicio-desc {
+    font-size: 13px;
+    color: #ffffff;
+    line-height: 1.4;
+    text-align: justify;
+}

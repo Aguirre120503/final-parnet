@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>Sugerencias</h1>
+<a href="{{ url_for('admin.sugerencias_export_excel') }}">Exportar Excel</a>
+<a href="{{ url_for('admin.sugerencias_export_pdf') }}">Exportar PDF</a>
+
+<ul>
+  {% for s in pag.items %}
+  <li>{{ s.creado_en }} - {{ s.nombre }} - {{ s.email }}: {{ s.mensaje }}</li>
+  {% endfor %}
+</ul>
+
+<div>
+  {% if pag.has_prev %}
+    <a href="{{ url_for('admin.sugerencias_list', page=pag.prev_num) }}">Anterior</a>
+  {% endif %}
+  <span>Página {{ pag.page }} de {{ pag.pages }}</span>
+  {% if pag.has_next %}
+    <a href="{{ url_for('admin.sugerencias_list', page=pag.next_num) }}">Siguiente</a>
+  {% endif %}
+</div>
+{% endblock %}

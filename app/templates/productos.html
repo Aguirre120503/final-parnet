@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}Productos | ParNet Ingeniería{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final Web</title>
+    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'css/styles.css\') }}">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- HEADER COMPLETO -->
+    <header id="main-header">
+        <img src="{{ url_for(\'static\', filename=\'img/header1.png\') }}" class="header-img" alt="Header 1">
+
+        <!-- HEADER 2 con texto animado -->
+        <div class="header2-wrapper">
+            <img src="{{ url_for(\'static\', filename=\'img/header2.png\') }}" class="header-img" alt="Header 2">
+
+            <!-- TEXTO ANIMADO -->
+            <div class="header-ticker">
+                <div class="ticker-text">
+                    Bienvenido a
+                    <span class="highlight-yellow">PARNET Ingeniería S.A. de C.V.</span>
+                    Continuamente actualizamos el Sitio. Revisa nuestros estándares de calidad
+                    <span class="highlight-yellow">ISO 9000</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENÚ CON HOTSPOTS INVISIBLES -->
+    <div class="menu-wrapper">
+        <img src="{{ url_for(\'static\', filename=\'img/menu_tabs.png\') }}" class="menu-tabs" alt="Menú">
+
+        <!-- Hotspots encima de cada pestaña -->
+        <nav class="menu-hotspots">
+
+            <!-- 1. Página principal -> AHORA index.html (login) -->
+            <a href="{{ url_for('public.index') }}" class="tab tab-home" aria-label="Página principal"></a>
+
+            <!-- 2. ¿Quiénes somos? -->
+            <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes" aria-label="¿Quiénes somos?"></a>
+
+            <!-- 3. Clientes -->
+            <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes" aria-label="Clientes"></a>
+
+            <!-- 4. Servicios -->
+            <a href="{{ url_for('public.servicios') }}" class="tab tab-servicios" aria-label="Servicios"></a>
+
+            <!-- 5. PRODUCTOS → ahora abre productos.html -->
+            <a href="{{ url_for('public.productos') }}" class="tab tab-productos" aria-label="Productos"></a>
+
+            <!-- 6. Casos de éxito -->
+            <a href="{{ url_for('public.casos') }}" class="tab tab-casos" aria-label="Casos de éxito"></a>
+
+            <!-- 7. Contactos -->
+            <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto" aria-label="Contacto"></a>
+
+            <!-- 8. Socios -->
+            <a href="{{ url_for('public.socios') }}" class="tab tab-socios" aria-label="Socios"></a>
+
+        </nav>
+    </div>
+<section class="productos-section">
+  <h2>Catálogo de productos</h2>
+  <form method="get" action="{{ url_for('public.productos') }}">
+    <input type="text" id="buscador-productos" name="q" placeholder="Buscar producto..." value="{{ q or '' }}">
+    <button type="submit">Buscar</button>
+  </form>
+  <ul id="lista-productos">
+    {% for p in productos %}
+      <li>
+        {{ p.nombre }} - {{ p.estatus }} ({{ p.existencia }} en existencia)
+      </li>
+    {% else %}
+      <li>No hay productos registrados.</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}

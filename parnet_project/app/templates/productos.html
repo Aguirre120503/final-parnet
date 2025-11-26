@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>Productos</h1>
+<form method="get">
+  <input type="text" name="q" placeholder="Buscar" value="{{ q }}">
+  <button type="submit">Buscar</button>
+</form>
+<ul>
+  {% for p in productos %}
+  <li>{{ p.nombre }} - {{ p.estatus }} - {{ p.existencia }}</li>
+  {% else %}
+  <li>No hay productos.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

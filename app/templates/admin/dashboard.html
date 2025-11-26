@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<p>Aquí puedes conectar tus gráficas con data_servicios y data_productos.</p>
+
+<h2>Servicios por tipo</h2>
+<p>{{ data_servicios }}</p>
+
+<h2>Productos por tipo</h2>
+<p>{{ data_productos }}</p>
+{% endblock %}

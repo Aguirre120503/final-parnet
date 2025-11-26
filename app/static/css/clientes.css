@@ -1,0 +1,67 @@
+/* ============================================
+   SECCIÓN CLIENTES
+   ============================================ */
+
+.clientes-wrapper {
+    width: 85%;
+    margin: 40px auto;
+    background-color: #003366;   /* azul fuerte */
+    padding: 25px 30px;
+    border-radius: 8px;
+    border: 1px solid #001f3f;
+}
+
+.clientes-title {
+    color: #ffff33;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.clientes-intro {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.clientes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px;
+}
+
+.cliente-card {
+    background-color: #0b2a4d;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #001f3f;
+    text-align: center;
+}
+
+.cliente-logo-box {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.cliente-logo {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+}
+
+.cliente-nombre {
+    font-size: 16px;
+    color: #ffff33;
+    margin: 10px 0;
+}
+
+.cliente-testimonio {
+    font-size: 13px;
+    color: #ffffff;
+    text-align: justify;
+    line-height: 1.4;
+}
