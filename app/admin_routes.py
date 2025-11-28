@@ -94,3 +94,21 @@ def sugerencias_export_pdf():
 def productos_reporte_pdf():
     path = reporte_productos_pdf()
     return send_file(path, as_attachment=True)
+
+@admin_bp.route("/productos/<int:id>/editar", methods=["GET", "POST"])
+@login_required
+@admin_required
+def productos_editar(id):
+    producto = Producto.query.get_or_404(id)
+
+    if request.method == "POST":
+        producto.nombre = request.form.get("nombre")
+        producto.precio = request.form.get("precio", 0)
+        producto.existencia = request.form.get("existencia", 0)
+        producto.estatus = request.form.get("estatus", "existencia")
+        producto.tipo_producto = request.form.get("tipo_producto")
+        db.session.commit()
+
+        return redirect(url_for("admin.productos_list"))
+
+    return render_template("admin/producto_editar.html", producto=producto)

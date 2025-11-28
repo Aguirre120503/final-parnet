@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Editar producto | parnet ingeniería{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<style>
+  .admin-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #003366;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    color:#e5e7eb
+  }
+  .admin-header h1 {
+    color: yellow;
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+  }
+  .card {
+    background: #004a8f;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .form-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color:yellow;
+  }
+  .form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+  }
+  .btn-primary {
+    background: #2563eb;
+    color: #003366;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .btn-secondary {
+    background: #e5e7eb;
+    color: #111827;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .prod-img-thumb {
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid black;
+    background: white;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-wrapper">
+  <div class="admin-header">
+    <h1>editar producto</h1>
+    <p>modifica los datos del producto seleccionado.</p>
+  </div>
+
+  <div class="card">
+    <form action="{{ url_for('admin.productos_editar', id=producto.id) }}"
+          method="post"
+          enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label for="nombre">nombre</label>
+        <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="precio">precio</label>
+        <input type="number" step="0.01" id="precio" name="precio"
+               value="{{ producto.precio }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="existencia">existencia</label>
+        <input type="number" id="existencia" name="existencia"
+               value="{{ producto.existencia }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="estatus">estatus</label>
+        <select id="estatus" name="estatus">
+          <option value="existencia"
+                  {% if producto.estatus == "existencia" %}selected{% endif %}>
+            en existencia
+          </option>
+          <option value="agotado"
+                  {% if producto.estatus == "agotado" %}selected{% endif %}>
+            agotado
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_producto">tipo de producto</label>
+        <input type="text" id="tipo_producto" name="tipo_producto"
+               value="{{ producto.tipo_producto or '' }}">
+      </div>
+
+      <div class="form-group">
+        <label>imagen actual</label>
+        {% if producto.imagen_url %}
+          <img src="{{ url_for('static', filename=producto.imagen_url) }}"
+               alt="{{ producto.nombre }}" class="prod-img-thumb">
+        {% else %}
+          <span style="color:white;">sin imagen</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="imagen">cambiar imagen (opcional)</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*">
+      </div>
+
+      <button type="submit" class="btn-primary">guardar cambios</button>
+      <a href="{{ url_for('admin.productos_list') }}" class="btn-secondary">cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,23 +1,148 @@
+{% extends "base.html" %}
+{% block title %}Sugerencias | Admin{% endblock %}
 
-{% extends 'base.html' %}
+{% block styles %}
+<style>
+  body {
+    background: #0b65c2;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .admin-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: #003d80;
+    padding: 25px 35px;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  .admin-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #facc15;
+    margin-bottom: 15px;
+  }
+
+  .btn-bar a {
+    margin-right: 12px;
+    background: #facc15;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #003d80;
+  }
+
+  .btn-bar a:hover {
+    background: #ffe55c;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.9rem;
+  }
+
+  th {
+    background: #004a8f;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  tr:hover {
+    background: #e5e7eb;
+  }
+
+  .pagination {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .pagination a {
+    color: #facc15;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: #facc15;
+    font-weight: bold;
+    text-decoration: none;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
-<h1>Sugerencias</h1>
-<a href="{{ url_for('admin.sugerencias_export_excel') }}">Exportar Excel</a>
-<a href="{{ url_for('admin.sugerencias_export_pdf') }}">Exportar PDF</a>
+<div class="admin-wrapper">
 
-<ul>
-  {% for s in pag.items %}
-  <li>{{ s.creado_en }} - {{ s.nombre }} - {{ s.email }}: {{ s.mensaje }}</li>
-  {% endfor %}
-</ul>
+  <h1 class="admin-title">Sugerencias recibidas</h1>
 
-<div>
-  {% if pag.has_prev %}
-    <a href="{{ url_for('admin.sugerencias_list', page=pag.prev_num) }}">Anterior</a>
-  {% endif %}
-  <span>Página {{ pag.page }} de {{ pag.pages }}</span>
-  {% if pag.has_next %}
-    <a href="{{ url_for('admin.sugerencias_list', page=pag.next_num) }}">Siguiente</a>
-  {% endif %}
+  <!-- BOTONES DE EXPORTACIÓN -->
+  <div class="btn-bar">
+    <a href="{{ url_for('admin.sugerencias_export_excel') }}">📘 Exportar Excel</a>
+    <a href="{{ url_for('admin.sugerencias_export_pdf') }}">📕 Exportar PDF</a>
+  </div>
+
+  <!-- TABLA DE SUGERENCIAS -->
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Mensaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in pag.items %}
+      <tr>
+        <td>{{ s.creado_en.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.mensaje }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- PAGINACIÓN -->
+  <div class="pagination">
+    <div>
+      {% if pag.has_prev %}
+        <a href="{{ url_for('admin.sugerencias_list', page=pag.prev_num) }}">⬅ Anterior</a>
+      {% endif %}
+    </div>
+
+    <span>Página {{ pag.page }} de {{ pag.pages }}</span>
+
+    <div>
+      {% if pag.has_next %}
+        <a href="{{ url_for('admin.sugerencias_list', page=pag.next_num) }}">Siguiente ➡</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- VOLVER AL DASHBOARD -->
+  <a href="{{ url_for('admin.dashboard') }}" class="back-btn">⬅ Volver al Dashboard</a>
+
 </div>
 {% endblock %}

@@ -82,3 +82,12 @@ class Visita(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.Date, nullable=False)
     contador = db.Column(db.Integer, nullable=False, default=0)
+
+class Sugerencia(db.Model):
+    _tablename_ = "sugerencias"
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    email = db.Column(db.String(120))
+    mensaje = db.Column(db.Text, nullable=False)
+    creado_en = db.Column(db.DateTime, default=datetime.utcnow)
+    leido = db.Column(db.Boolean, default=False)

@@ -1,0 +1,32 @@
+.noticias-box {
+    position: relative;
+    width: 100%;
+}
+
+.noticias-img {
+    width: 100%;
+    display: block;
+}
+
+.noticias-overlay {
+    position: absolute;
+    top: 70px;  /* Mueve más arriba o abajo */
+    left: 20px;
+    right: 20px;
+    color: white;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.noticia {
+    margin-bottom: 15px;
+}
+
+.leer-mas {
+    color: #66c2ff;
+    text-decoration: none;
+}
+
+.leer-mas:hover {
+    text-decoration: underline;
+}
