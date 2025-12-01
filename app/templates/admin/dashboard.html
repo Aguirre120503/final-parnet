@@ -190,10 +190,10 @@ Productos: {{ data_productos }}
 
 <!-- BOTÓN PARA VER MENSAJES DEL FORMULARIO DE CONTACTO -->
 <div style="margin-bottom: 20px;">
-    <a href="{{ url_for('admin.sugerencias_list') }}"
+    <a href="{{ url_for('admin.contacto_list') }}"
        style="
-         background:#facc15;
-         color:#003d80;
+         background:#004a8f;
+         color:#facc15;
          padding:10px 18px;
          border-radius:8px;
          text-decoration:none;
@@ -201,6 +201,32 @@ Productos: {{ data_productos }}
          display:inline-block;
        ">
         📩 Ver mensajes de contacto
+    </a>
+</div>
+
+<a href="{{ url_for('admin.sugerencias_list') }}"
+   style="
+          padding: 10px 16px;
+          background:#004a8f;
+          color:#facc15;
+          border-radius:8px;
+          text-decoration:none;
+          font-weight:bold;">
+    Ver sugerencias
+</a>
+
+<!-- BOTÓN PARA CREAR ADMINISTRADOR -->
+<div style="text-align:right; margin-bottom:20px;">
+    <a href="{{ url_for('admin.usuarios_nuevo') }}"
+       style="
+           background:#facc15;
+           color:#003d80;
+           padding:10px 16px;
+           font-weight:bold;
+           border-radius:8px;
+           text-decoration:none;
+       ">
+       ➕ Agregar administrador
     </a>
 </div>
 

@@ -226,3 +226,26 @@ body {
 #lista-productos li {
   margin-bottom: 4px;
 }
+
+.btn-sugerencia-azul {
+    display: block;
+    margin: 18px auto;
+    padding: 16px 28px;
+    max-width: 350px;
+
+    background: #004a8f;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: 0.2s ease;
+}
+
+.btn-sugerencia-azul:hover {
+    background: #005fc0;
+    transform: scale(1.03);
+}

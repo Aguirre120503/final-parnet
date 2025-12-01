@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Mensajes de contacto | ParNet Ingeniería{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<style>
+  body {
+    background: #0b65c2;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e5e7eb;
+  }
+
+  .admin-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #003366;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  }
+
+  .admin-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #facc15;
+  }
+
+  .admin-subtitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #111827;
+    vertical-align: top;
+  }
+
+  th {
+    background: #e5e7eb;
+    text-align: left;
+  }
+
+  tr:nth-child(even) td {
+    background: #f9fafb;
+  }
+
+  .mensaje-cell {
+    max-width: 320px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .badge-fecha {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #0b65c2;
+    color: #f9fafb;
+    font-size: 0.8rem;
+  }
+
+  .btn-back {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 8px 16px;
+    background: #004a8f;
+    color: #facc15;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .btn-back:hover {
+    background: #075985;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .admin-wrapper {
+      margin: 20px 10px;
+      padding: 18px 15px;
+    }
+
+    table {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-wrapper">
+  <h1 class="admin-title">Mensajes de contacto</h1>
+  <p class="admin-subtitle">
+    Aquí puedes revisar los mensajes enviados desde el formulario de contacto del sitio.
+  </p>
+
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Mensaje</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+       {% for c in pag.items %}
+<tr>
+    <td>{{ c.id }}</td>
+    <td>{{ c.nombre }}</td>
+    <td>{{ c.email }}</td>
+    <td>{{ c.mensaje }}</td>
+    <td>{{ c.creado_en.strftime('%d/%m/%Y %H:%M') if c.creado_en else '' }}</td>
+
+    <!-- COLUMNA DE ESTADO -->
+    <td>
+        <form method="post" action="{{ url_for('admin.contacto_toggle', id=c.id) }}">
+            <button type="submit"
+                    style="
+                        padding:5px 12px;
+                        border-radius:6px;
+                        border:none;
+                        cursor:pointer;
+                        font-weight:bold;
+                        color:white;
+                        background: {% if c.estado == 'leído' %} #22c55e {% else %} #ef4444 {% endif %};
+                    ">
+                {% if c.estado == "leído" %}
+                    ✔ Leído
+                {% else %}
+                    ● Pendiente
+                {% endif %}
+            </button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <a href="{{ url_for('admin.dashboard') }}" class="btn-back">
+    ⬅ Volver al Dashboard
+  </a>
+</div>
+{% endblock %}

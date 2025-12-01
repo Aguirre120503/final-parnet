@@ -4,110 +4,182 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 <style>
+  body {
+    background: #0b65c2;
+    color: #e5e7eb;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
   .admin-wrapper {
     max-width: 1100px;
     margin: 40px auto;
     background: #003366;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    color:#e5e7eb
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
-  .admin-header {
-    margin-bottom: 25px;
-  }
+
   .admin-header h1 {
     color: yellow;
     margin: 0;
     font-size: 1.8rem;
+    text-transform: capitalize;
   }
+
+  .admin-header p {
+    margin: 5px 0 20px 0;
+  }
+
+  /* GRID PRINCIPAL */
   .admin-layout {
     display: grid;
-    grid-template-columns: 1.1fr 2fr;
-    gap: 30px;
+    grid-template-columns: 1fr 1.7fr;
+    gap: 25px;
   }
+
   .card {
     background: #004a8f;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   }
+
   .card h2 {
     margin-top: 0;
-    font-size: 1.1rem;
-    color:yellow;
+    font-size: 1.2rem;
+    color: yellow;
   }
+
   .form-group {
     margin-bottom: 12px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    color:yellow;
+    color: yellow;
   }
+
   .form-group label {
     font-size: 0.9rem;
     font-weight: 600;
+    text-transform: capitalize;
   }
+
   .form-group input,
-  .form-group select,
-  .form-group textarea {
+  .form-group select {
     padding: 6px 8px;
     border-radius: 6px;
     border: 1px solid #cbd5e1;
     font-size: 0.9rem;
+    width: 100%;
   }
+
   .btn-primary {
     background: #2563eb;
-    color: #003366;
+    color: #fff;
     border: none;
-    padding: 6px 10px;
+    padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.85rem;
+    margin-right: 6px;
   }
+
   .btn-danger {
     background: #dc2626;
     color: #fff;
     border: none;
-    padding: 4px 8px;
+    padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.8rem;
   }
+
+  /* TABLA RESPONSIVA */
+  .table-responsive {
+    overflow-x: auto;
+    width: 100%;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
   }
+
   th, td {
-    padding: 8px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #222;
     vertical-align: middle;
-    color:black;
-  }
-  th {
     text-align: left;
-    background: #f3f4f6;
+  }
+
+  th {
+    background: #e5e7eb;
+    text-transform: capitalize;
+  }
+
+  /* miniatura de producto */
+  .prod-thumb {
+    max-width: 70px;
+    max-height: 70px;
+    border-radius: 6px;
+    border: 2px solid #0b65c2;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 900px) {
+    .admin-layout {
+      grid-template-columns: 1fr;
+    }
+
+    table {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .btn-primary, .btn-danger {
+      width: 100%;
+      margin-bottom: 6px;
+    }
   }
 </style>
 {% endblock %}
 
 {% block content %}
+
 <div class="admin-wrapper">
   <div class="admin-header">
     <h1>administrar productos</h1>
-    <p>desde aquí puedes dar de alta, editar y eliminar productos del catálogo.</p>
+    <p>desde aquí puedes agregar, editar y eliminar productos.</p>
   </div>
 
   <div class="admin-layout">
-    <!-- formulario nuevo producto -->
+
+    <!-- FORMULARIO DE NUEVO PRODUCTO -->
     <div class="card">
       <h2>nuevo producto</h2>
 
-      <form action="{{ url_for('admin.productos_nuevo') }}" method="post">
-        method="post"
-        enctype="multipart/form-data">
+      <form action="{{ url_for('admin.productos_nuevo') }}" method="post" enctype="multipart/form-data">
+
+<div class="form-group">
+    <label for="ficha_tecnica">Ficha técnica (texto)</label>
+    <textarea
+        id="ficha_tecnica"
+        name="ficha_tecnica"
+        rows="4"
+        style="width:100%; border-radius:8px; padding:8px;"
+    >{{ producto.ficha_tecnica if producto and producto.ficha_tecnica else '' }}</textarea>
+</div>
+
         <div class="form-group">
           <label for="nombre">nombre</label>
           <input type="text" id="nombre" name="nombre" required>
@@ -131,81 +203,105 @@
           </select>
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <label for="tipo_producto">tipo de producto</label>
           <input type="text" id="tipo_producto" name="tipo_producto">
         </div>
 
-         <div class="form-group">
-          <label for="image">imagen del producto</label>
-          <input type="file" id="imagen" name="imagen"> accept="image/*"
+        <div class="form-group">
+          <label for="imagen">imagen del producto</label>
+          <input type="file" id="imagen" name="imagen" accept="image/*">
         </div>
 
         <button type="submit" class="btn-primary">guardar producto</button>
       </form>
     </div>
 
-    <!-- tabla productos -->
+    <!-- TABLA DE PRODUCTOS -->
     <div class="card">
       <h2>productos registrados</h2>
 
       {% if productos %}
-      <table>
-        <thead>
-          <tr>
-            <th>nombre</th>
-            <th>precio</th>
-            <th>existencia</th>
-            <th>estatus</th>
-            <th>tipo</th>
-            <th>acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for p in productos %}
-          <tr>
-            <td>{{ p.nombre }}</td>
-            <td>${{ "%.2f"|format(p.precio) }}</td>
-            <td>{{ p.existencia }}</td>
-            <td>{{ p.estatus }}</td>
-            <td>{{ p.tipo_producto or "" }}</td>
-            <td>
-              <!-- botón EDITAR -->
-              <a href="{{ url_for('admin.productos_editar', id=p.id) }}"
-                 class="btn-primary">
-                editar
-              </a>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>nombre</th>
+              <th>imagen</th>
+              <th>precio</th>
+              <th>existencia</th>
+              <th>estatus</th>
+              <th>tipo</th>
+              <th>acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in productos %}
+            <tr>
+              <td>{{ p.nombre }}</td>
 
-              <!-- botón ELIMINAR -->
-              <form method="post"
-                    action="{{ url_for('admin.productos_eliminar', id=p.id) }}"
-                    style="display:inline;"
-                    onsubmit="return confirm('¿eliminar este producto?');">
-                <button type="submit" class="btn-danger">eliminar</button>
-              </form>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+              <td>
+                {% if p.imagen_url %}
+                  <img src="{{ url_for('static', filename=p.imagen_url) }}"
+                       alt="{{ p.nombre }}"
+                       class="prod-thumb">
+                {% else %}
+                  Sin imagen
+                {% endif %}
+              </td>
+
+              <td>${{ "%.2f"|format(p.precio) }}</td>
+              <td>{{ p.existencia }}</td>
+              <td>{{ p.estatus }}</td>
+              <td>{{ p.tipo_producto or "" }}</td>
+
+              <td>
+                <a href="{{ url_for('admin.productos_editar', id=p.id) }}" class="btn-primary">
+                  editar
+                </a>
+
+                <form method="post"
+                      action="{{ url_for('admin.productos_eliminar', id=p.id) }}"
+                      style="display:inline;"
+                      onsubmit="return confirm('¿Eliminar este producto?');">
+                  <button type="submit" class="btn-danger">eliminar</button>
+                </form>
+              </td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
       {% else %}
-        <p>no hay productos.</p>
+        <p>No hay productos registrados.</p>
       {% endif %}
+
     </div>
   </div>
 
- <div style="margin-top: 20px;">
-  <a href="{{ url_for('admin.dashboard') }}"
-     style="
-       background: #004a8f;
-       color: #facc15;
-       padding: 10px 18px;
-       font-weight: bold;
-       border-radius: 8px;
-       text-decoration: none;
-       font-size: 0.95rem;
-     ">
-    ⬅ Volver al Dashboard
-  </a>
+  <div style="margin-bottom: 15px;">
+    <a href="{{ url_for('admin.productos_reporte_pdf') }}"
+       style="
+         background:#004a8f;
+         color:#facc15;
+         padding:8px 14px;
+         border-radius:8px;
+         font-weight:bold;
+         text-decoration:none;
+       ">
+        📄 Descargar reporte de productos
+    </a>
 </div>
+
+  <div style="margin-top: 20px;">
+    <a href="{{ url_for('admin.dashboard') }}"
+       style="background:#004a8f; color:#facc15; padding:10px 18px;
+              border-radius:8px; font-weight:bold; text-decoration:none;">
+      ⬅ Volver al Dashboard
+    </a>
+  </div>
+
+</div>
+
 {% endblock %}

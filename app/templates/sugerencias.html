@@ -1,16 +1,149 @@
-
 {% extends 'base.html' %}
+{% block title %}Sugerencias | ParNet Ingeniería{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<style>
+.sugerencias-container {
+    max-width: 650px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.sugerencias-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #004a8f;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #003766;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cfd9e8;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea.form-control {
+    resize: none;
+}
+
+/* CAPTCHA */
+.captcha-group {
+    margin-bottom: 20px;
+}
+
+.captcha-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.captcha-equation {
+    background: #004a8f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    min-width: 140px;
+    text-align: center;
+}
+
+.captcha-input {
+    width: 120px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #cfd9e8;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* BOTÓN */
+.btn-enviar {
+    width: 100%;
+    padding: 14px;
+    background: #004a8f;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-enviar:hover {
+    background: #005fc0;
+    transform: scale(1.02);
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<h1>Sugerencias</h1>
-<form method="post">
-  <label>Nombre</label>
-  <input type="text" name="nombre">
-  <label>Email</label>
-  <input type="email" name="email">
-  <label>Mensaje</label>
-  <textarea name="mensaje"></textarea>
-  <label>Captcha: {{ captcha_texto }}</label>
-  <input type="text" name="captcha">
-  <button type="submit">Enviar</button>
-</form>
+
+<div class="sugerencias-container">
+<a href="{{ url_for('public.index') }}" class="btn-regresar">
+    ⬅ Volver al inicio
+</a>
+    <h2 class="sugerencias-title">Buzón de Sugerencias</h2>
+
+    {# Mensajes flash, por si el captcha falla o se envía OK #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('public.sugerencias') }}">
+
+        <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Sugerencia</label>
+            <textarea name="mensaje" class="form-control" rows="5" required></textarea>
+        </div>
+
+        <div class="captcha-group">
+            <label class="form-label">Control CAPTCHA</label>
+
+            <div class="captcha-wrapper">
+                <!-- Texto del captcha, viene de generar_captcha() -->
+                <div class="captcha-equation">
+                    {{ captcha_texto }}
+                </div>
+
+                <!-- Respuesta del usuario -->
+                <input type="text" name="captcha" class="captcha-input" required>
+
+                <!-- ID del captcha (lo usa validar_captcha internamente) -->
+                <input type="hidden" name="captcha_id" value="{{ captcha_id }}">
+            </div>
+        </div>
+
+        <button class="btn-enviar" type="submit">Enviar sugerencia</button>
+
+    </form>
+
+</div>
+
 {% endblock %}

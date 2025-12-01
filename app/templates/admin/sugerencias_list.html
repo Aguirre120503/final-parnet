@@ -15,60 +15,81 @@
     padding: 25px 35px;
     border-radius: 12px;
     color: white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
   }
 
   .admin-title {
     font-size: 2rem;
     font-weight: bold;
     color: #facc15;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #c7ddff;
+    font-size: 0.95rem;
+  }
+
+  .btn-bar {
+    margin-bottom: 10px;
   }
 
   .btn-bar a {
-    margin-right: 12px;
+    display: inline-block;
+    margin-right: 10px;
     background: #facc15;
     padding: 8px 15px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     color: #003d80;
+    font-size: 0.9rem;
   }
 
   .btn-bar a:hover {
     background: #ffe55c;
   }
 
+  .table-wrapper {
+    margin-top: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
   table {
     width: 100%;
-    margin-top: 20px;
     border-collapse: collapse;
-    background: white;
-    color: black;
-    border-radius: 8px;
-    overflow: hidden;
+    color: #111827;
     font-size: 0.9rem;
   }
 
-  th {
+  thead tr {
     background: #004a8f;
     color: white;
-    padding: 10px;
+  }
+
+  th, td {
+    padding: 10px 12px;
     text-align: left;
   }
 
-  td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: top;
+  tbody tr:nth-child(even) {
+    background: #f3f4f6;
   }
 
-  tr:hover {
+  tbody tr:hover {
     background: #e5e7eb;
   }
 
+  td.mensaje {
+    white-space: pre-wrap;
+  }
+
   .pagination {
-    margin-top: 18px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,12 +102,35 @@
     font-weight: bold;
   }
 
+  .pagination a:hover {
+    text-decoration: underline;
+  }
+
   .back-btn {
     display: inline-block;
-    margin-top: 15px;
+    margin-top: 18px;
     color: #facc15;
     font-weight: bold;
     text-decoration: none;
+  }
+
+  .back-btn:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .admin-wrapper {
+      margin: 20px;
+      padding: 20px;
+    }
+
+    table {
+      font-size: 0.8rem;
+    }
+
+    th, td {
+      padding: 8px;
+    }
   }
 </style>
 {% endblock %}
@@ -95,34 +139,37 @@
 <div class="admin-wrapper">
 
   <h1 class="admin-title">Sugerencias recibidas</h1>
+  <p class="subtitle">Revisa las sugerencias enviadas desde el buzón de la página principal.</p>
 
   <!-- BOTONES DE EXPORTACIÓN -->
   <div class="btn-bar">
-    <a href="{{ url_for('admin.sugerencias_export_excel') }}">📘 Exportar Excel</a>
-    <a href="{{ url_for('admin.sugerencias_export_pdf') }}">📕 Exportar PDF</a>
+    <a href="{{ url_for('admin.sugerencias_export_excel') }}">📘 Exportar a Excel</a>
+    <a href="{{ url_for('admin.sugerencias_export_pdf') }}">📕 Exportar a PDF</a>
   </div>
 
   <!-- TABLA DE SUGERENCIAS -->
-  <table>
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Mensaje</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for s in pag.items %}
-      <tr>
-        <td>{{ s.creado_en.strftime('%Y-%m-%d %H:%M') }}</td>
-        <td>{{ s.nombre }}</td>
-        <td>{{ s.email }}</td>
-        <td>{{ s.mensaje }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Mensaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in pag.items %}
+        <tr>
+          <td>{{ s.creado_en.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>{{ s.nombre }}</td>
+          <td>{{ s.email or '-' }}</td>
+          <td class="mensaje">{{ s.mensaje }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
   <!-- PAGINACIÓN -->
   <div class="pagination">

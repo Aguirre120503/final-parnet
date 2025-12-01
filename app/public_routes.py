@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for, flash, send_file
 from .models import Producto, Noticia, Sugerencia, SolicitudServicio
 from .db_singleton import get_db
 from .utils.captcha import generar_captcha, validar_captcha
+from .utils.reports import export_ficha_producto_pdf
 
 db = get_db()
 
@@ -23,36 +24,54 @@ def productos():
     productos = query.all()
     return render_template("productos.html", productos=productos, q=q)
 
+@public_bp.route("/productos/<int:id>/ficha")
+def producto_ficha_pdf(id):
+    producto = Producto.query.get_or_404(id)
+    path = export_ficha_producto_pdf(producto)
+    return send_file(path, as_attachment=True)
 
 @public_bp.route("/contacto", methods=["GET", "POST"])
 def contacto():
-    # Aquí puedes implementar el envío de correo si lo deseas
     if request.method == "POST":
-        # procesar datos del formulario
         pass
     return render_template("contacto.html")
 
 
+# ============================================================
+#               S U G E R E N C I A S   (CAPTCHA)
+# ============================================================
 @public_bp.route("/sugerencias", methods=["GET", "POST"])
 def sugerencias():
     if request.method == "POST":
         nombre = request.form.get("nombre")
-        email = request.form.get("email")
         mensaje = request.form.get("mensaje")
         captcha_resp = request.form.get("captcha")
 
+        # Validar captcha
         if not validar_captcha(captcha_resp):
-            return "Captcha incorrecto", 400
+            flash("CAPTCHA incorrecto, intenta de nuevo.", "danger")
+            return redirect(url_for("public.sugerencias"))
 
-        sug = Sugerencia(nombre=nombre, email=email, mensaje=mensaje)
+        # Guardar sugerencia
+        sug = Sugerencia(nombre=nombre, mensaje=mensaje)
         db.session.add(sug)
         db.session.commit()
-        return "OK"
 
+        flash("Tu sugerencia ha sido enviada correctamente.", "success")
+        return redirect(url_for("public.sugerencias"))
+
+    # GET → generar captcha nuevo
     cap = generar_captcha()
-    return render_template("sugerencias.html", captcha_texto=cap["texto"], captcha_id=cap["id"])
+    return render_template(
+        "sugerencias.html",
+        captcha_texto=cap["texto"],
+        captcha_id=cap["id"]
+    )
 
 
+# ============================================================
+#               S E R V I C I O S   (CAPTCHA)
+# ============================================================
 @public_bp.route("/servicios", methods=["GET", "POST"])
 def servicios():
     if request.method == "POST":
@@ -64,7 +83,8 @@ def servicios():
         captcha_resp = request.form.get("captcha")
 
         if not validar_captcha(captcha_resp):
-            return "Captcha incorrecto", 400
+            flash("❌ El CAPTCHA es incorrecto. Inténtalo de nuevo.", "danger")
+            return redirect(url_for("public.servicios"))
 
         sol = SolicitudServicio(
             nombre_cliente=nombre,
@@ -75,7 +95,9 @@ def servicios():
         )
         db.session.add(sol)
         db.session.commit()
-        return "OK"
+
+        flash("✔ Tu solicitud ha sido enviada correctamente. ¡Gracias!", "success")
+        return redirect(url_for("public.servicios"))
 
     cap = generar_captcha()
     return render_template("servicios.html", captcha_texto=cap["texto"], captcha_id=cap["id"])
@@ -99,3 +121,4 @@ def socios():
 @public_bp.route("/casos")
 def casos():
     return render_template("casos.html")
+

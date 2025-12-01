@@ -2,6 +2,7 @@
 from datetime import datetime
 from flask_login import UserMixin
 from .db_singleton import get_db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = get_db()
 
@@ -43,6 +44,7 @@ class Producto(db.Model):
     existencia = db.Column(db.Integer, nullable=False, default=0)
     estatus = db.Column(db.String(20), nullable=False, default="existencia")
     imagen_url = db.Column(db.String(255))
+    ficha_tecnica = db.Column()
     tipo_producto = db.Column(db.String(100))
     categoria_id = db.Column(db.Integer, db.ForeignKey("categorias.id"))
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
@@ -83,11 +85,12 @@ class Visita(db.Model):
     fecha = db.Column(db.Date, nullable=False)
     contador = db.Column(db.Integer, nullable=False, default=0)
 
-class Sugerencia(db.Model):
-    _tablename_ = "sugerencias"
+class Contacto(db.Model):
+    __tablename__ = "contacto"
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100))
-    email = db.Column(db.String(120))
+    nombre = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
     mensaje = db.Column(db.Text, nullable=False)
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
-    leido = db.Column(db.Boolean, default=False)
+
+    estado = db.Column(db.String(20),nullable=False, default="pendiente")

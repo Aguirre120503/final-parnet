@@ -31,7 +31,6 @@
         <img src="{{ url_for('static', filename='img/menu_tabs.png') }}" class="menu-tabs" alt="Menú">
 
         <nav class="menu-hotspots">
-
             <a href="{{ url_for('public.index') }}" class="tab tab-home"></a>
             <a href="{{ url_for('public.quienes') }}" class="tab tab-quienes"></a>
             <a href="{{ url_for('public.clientes') }}" class="tab tab-clientes"></a>
@@ -40,7 +39,6 @@
             <a href="{{ url_for('public.casos') }}" class="tab tab-casos"></a>
             <a href="{{ url_for('public.contacto') }}" class="tab tab-contacto"></a>
             <a href="{{ url_for('public.socios') }}" class="tab tab-socios"></a>
-
         </nav>
     </div>
 
@@ -58,12 +56,43 @@
 
     </div>
 
+    
 </div>
 
+<!-- BOTÓN AZUL GRANDOTE DE SUGERENCIAS -->
+<a href="{{ url_for('public.sugerencias') }}" class="btn-sugerencia-azul">
+    💡 Enviar sugerencia
+</a>
+
+<!-- BOTÓN LOGIN -->
 <a href="{{ url_for('auth.login') }}"
    style="display:inline-block; padding:8px 14px; background:#004a8f; color:white;
-          border-radius:6px; text-decoration:none; font-weight:bold;">
+          border-radius:6px; text-decoration:none; font-weight:bold; margin-top:8px;">
   Login administradores
 </a>
+
+<a href="{{ url_for('static', filename='img/video.mp4') }}"
+   target="_blank"
+   style="
+      display:inline-block;
+      background:#004a8f;
+      color:#facc15;
+      padding:12px 20px;
+      font-size:18px;
+      font-weight:bold;
+      border-radius:8px;
+      text-decoration:none;
+      margin-top:15px;
+   ">
+    🎥 Ver video institucional
+</a>
+
+<div class="video-container">
+    <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+        Tu navegador no soporta el video.
+    </video>
+</div>
+
 
 {% endblock %}

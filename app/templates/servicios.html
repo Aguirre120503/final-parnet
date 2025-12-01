@@ -100,9 +100,79 @@
                 <p class="servicio-desc">Creación de sistemas web, aplicaciones empresariales y soluciones a medida.</p>
             </div>
 
-        </div>
+        </div> <!-- fin .servicios-grid -->
 
-    </div>
+    </div> <!-- fin .servicios-wrapper -->
 
-</div>
+
+    <!-- ===================================== -->
+    <!--   FORMULARIO DE SOLICITUD DE SERVICIO -->
+    <!-- ===================================== -->
+
+    <div class="solicitud-wrapper">
+
+        <h2 class="solicitud-title">Solicitar un Servicio</h2>
+        <p class="solicitud-text">
+            Complete el siguiente formulario para solicitar atención de nuestro equipo técnico.
+        </p>
+
+        <form action="{{ url_for('public.servicios') }}" method="POST" class="solicitud-form">
+
+            <div class="form-row">
+                <label for="nombre_cliente">Nombre completo</label>
+                <input type="text" id="nombre_cliente" name="nombre_cliente" required>
+            </div>
+
+            <div class="form-row">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-row">
+                <label for="area">Área que solicita el servicio</label>
+                <select id="area" name="area" required>
+                    <option value="" disabled selected>Seleccione un área</option>
+                    <option value="Sistemas">Sistemas</option>
+                    <option value="Redes y Comunicaciones">Redes y Comunicaciones</option>
+                    <option value="Soporte Técnico">Soporte Técnico</option>
+                    <option value="Infraestructura">Infraestructura</option>
+                    <option value="Calidad">Calidad</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="tipo_servicio">Tipo de servicio</label>
+                <select id="tipo_servicio" name="tipo_servicio" required>
+                    <option value="" disabled selected>Seleccione el tipo de servicio</option>
+                    <option value="Instalación">Instalación</option>
+                    <option value="Mantenimiento preventivo">Mantenimiento preventivo</option>
+                    <option value="Mantenimiento correctivo">Mantenimiento correctivo</option>
+                    <option value="Configuración">Configuración</option>
+                    <option value="Asesoría">Asesoría</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="detalle">Detalle de la solicitud</label>
+                <textarea id="detalle" name="detalle" placeholder="Describa el problema o necesidad..." required></textarea>
+            </div>
+
+            <div class="form-row">
+                <label>Control CAPTCHA</label>
+                <div class="captcha-group">
+                    <input type="text" class="captcha-display" value="{{ captcha_texto }}" readonly>
+                    <input type="text" name="captcha" class="captcha-input" placeholder="Resultado" required>
+                    <input type="hidden" name="captcha_id" value="{{ captcha_id }}">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-enviar-servicio">Enviar solicitud</button>
+
+        </form>
+
+    </div> <!-- fin .solicitud-wrapper -->
+
+</div> <!-- fin .page-wrapper -->
 {% endblock %}
