@@ -42,21 +42,45 @@
         </nav>
     </div>
 
-    <!-- CONTENIDO (COLUMNA IZQ + COLUMNA DER) -->
-    <div class="main-content">
+<!-- CONTENIDO (COLUMNA IZQ + COLUMNA DER) -->
+<div class="main-content">
 
-        <aside class="left-column">
+    <aside class="left-column">
+
+
+        
+        <!-- 📌 CAJA DE NOTICIAS -->
+        <div class="noticias-box">
             <img src="{{ url_for('static', filename='img/noticias-box.png') }}" class="noticias-img" alt="Noticias">
-            <img src="{{ url_for('static', filename='img/menu_vertical.png') }}" class="menu-vertical-img" alt="Menú vertical">
-        </aside>
 
-        <section class="right-column">
-            <img src="{{ url_for('static', filename='img/content.png') }}" class="content-img" alt="Contenido">
-        </section>
+            <div class="noticias-texto">
 
-    </div>
 
-    
+                <p class="item-noticia">
+                    Alianzas en telecomunicaciones generan competencia:
+                    <br><strong>Standard & Poor’s</strong>
+                    <a href="#">[Leer más...]</a>
+                </p>
+
+                <p class="item-noticia">
+                    La TV satelital cumple 50 años.
+                    <a href="#">[Leer más...]</a>
+                </p>
+
+            
+
+            </div>
+        </div>
+
+        <!-- 📌 ESTE VA FUERA DE LA CAJA DE NOTICIAS -->
+        <img src="{{ url_for('static', filename='img/menu_vertical.png') }}" class="menu-vertical-img" alt="Menú vertical">
+
+    </aside>
+
+    <section class="right-column">
+        <img src="{{ url_for('static', filename='img/content.png') }}" class="content-img" alt="Contenido">
+    </section>
+
 </div>
 
 <!-- BOTÓN AZUL GRANDOTE DE SUGERENCIAS -->
@@ -94,5 +118,153 @@
     </video>
 </div>
 
+<style>
+.noticias-box {
+    position: relative;
+    width: 100%;
+}
+
+.noticias-img {
+    width: 100%;
+    display: block;
+}
+
+/* 🔵 CAJA DEL TEXTO SUPERPUESTO */
+.noticias-box {
+    position: relative;
+    width: 100%;
+}
+
+.noticias-img {
+    width: 100%;
+    display: block;
+}
+
+/* 🔵 TEXTO ENCIMA DE LA IMAGEN */
+.noticias-texto {
+    position: absolute;
+    top: 50px;            /* Ajustado como en el diseño original */
+    left: 12px;
+    width: 82%;
+    color: white;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    line-height: 1.2;
+}
+
+/* TÍTULO "NOTICIAS" */
+.titulo-noticias {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* TEXTOS */
+.item-noticia {
+    margin-bottom: 10px;
+}
+
+.item-noticia a {
+    color: #b7d7ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.item-noticia a:hover {
+    text-decoration: underline;
+}
+
+/* BOTÓN */
+.btn-panel-parnet {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 8px;
+    background: #1b9dd9;
+    color: white;
+    font-size: 11px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+.btn-panel-parnet:hover {
+    background: #0a78af;
+}
+
+.item-noticia {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: aparecer 0.8s ease-out forwards;
+}
+
+/* Para que cada noticia entre con pequeño retraso */
+.item-noticia:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.item-noticia:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.noticias-vertical {
+    height: 80px;              /* ajusta según tu espacio */
+    overflow: hidden;
+    position: relative;
+}
+
+.noticias-vertical p {
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    line-height: 80px;
+    text-align: left;
+    transform: translateY(100%);
+    animation: scrollVertical 9s linear infinite;
+}
+
+@keyframes scrollVertical {
+    0% { transform: translateY(100%); }
+    10% { transform: translateY(0); }
+    30% { transform: translateY(0); }
+    40% { transform: translateY(-100%); }
+    100% { transform: translateY(-100%); }
+}
+
+.noticias-vertical {
+    position: relative;
+    height: 120px;          /* Ajusta según el espacio visible */
+    overflow: hidden;
+}
+
+.noticias-lista {
+    display: flex;
+    flex-direction: column;
+    animation: slide-up 10s linear infinite;
+}
+
+.noticias-lista p {
+    margin: 0;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+/* Animación */
+@keyframes slide-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
 
 {% endblock %}
